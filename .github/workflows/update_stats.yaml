@@ -42,8 +42,8 @@ jobs:
           source("exec/update_match_summary.R", chdir = TRUE)
         shell: Rscript {0}
 
-      - name: Update Season Summaries
-        working-directory: ./private
-        run: |
-          source("exec/update_season_summary.R", chdir = TRUE)
-        shell: Rscript {0}
+     # - name: Update Season Summaries
+      #  working-directory: ./private
+      #  run: |
+       #   source("exec/update_season_summary.R", chdir = TRUE)
+      #  shell: Rscript {0}
