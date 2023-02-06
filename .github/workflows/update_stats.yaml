@@ -1,0 +1,43 @@
+on:
+  schedule:
+    - cron: 30 0 * * 1,4,5,6,0
+  workflow_dispatch:
+
+name: update_stats
+
+jobs:
+  weekly-fantasypros:
+    runs-on: ubuntu-20.04
+    env:
+      RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
+      GITHUB_PAT: ${{ secrets.GH_PAT }}
+
+    steps:
+      - name: Checkout private db repo
+        uses: actions/checkout@v2
+        with:
+          path: private
+          repository: nwslR/nwslscrapeR
+          ref:  adror1/update-scripts
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Checkout public data repo
+        uses: actions/checkout@v2
+        with:
+          path: public
+
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
+        id: install-r
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 1
+          working-directory: ./private
+          extra-packages: nwslR/nwslscrapeR
+
+      - name: Update Match Summaries
+        working-directory: ./private
+        run: |
+          source("exec/update_match_summary.R", chdir = TRUE)
+        shell: Rscript {0}
