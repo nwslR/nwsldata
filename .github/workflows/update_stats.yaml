@@ -36,15 +36,8 @@ jobs:
           working-directory: ./private
           extra-packages: nwslR/nwslscrapeR
 
-      - name: Checkout private db repo
-        uses: actions/checkout@v2
-        with:
-          repository: nwslR/nwslscrapeR
-          ref:  adror1/update-scripts
-          token: ${{ secrets.GH_PAT }}
-
       - name: Update Match Summaries
-        working-directory: ./exec
+        working-directory: ./private
         run: |
-          source("update_match_summary.R", chdir = TRUE)
+          source("exec/update_match_summary.R", chdir = TRUE)
         shell: Rscript {0}
