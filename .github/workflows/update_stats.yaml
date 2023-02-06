@@ -6,7 +6,7 @@ on:
 name: update_stats
 
 jobs:
-  weekly-fantasypros:
+  stats_update:
     runs-on: ubuntu-20.04
     env:
       RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
