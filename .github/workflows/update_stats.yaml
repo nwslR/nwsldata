@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
-      GITHUB_PAT: ${{ secrets.GH_PAT }}
+      token: ${{ secrets.GH_PAT }}
 
     steps:
       - name: Checkout private db repo
