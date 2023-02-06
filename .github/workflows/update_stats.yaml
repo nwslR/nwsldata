@@ -13,6 +13,14 @@ jobs:
       token: ${{ secrets.GH_PAT }}
 
     steps:
+      - name: Checkout private db repo
+        uses: actions/checkout@v2
+        with:
+          path: private
+          repository: nwslR/nwslscrapeR
+          ref:  adror1/update-scripts
+          token: ${{ secrets.GH_PAT }}
+
       - name: Checkout public data repo
         uses: actions/checkout@v2
         with:
@@ -25,19 +33,9 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 1
-          working-directory: ./private
           extra-packages: nwslR/nwslscrapeR
 
-      - name: Checkout private db repo
-        uses: actions/checkout@v2
-        with:
-          path: private
-          repository: nwslR/nwslscrapeR
-          ref:  adror1/update-scripts
-          token: ${{ secrets.GH_PAT }}
-
       - name: Update Match Summaries
-        working-directory: ./private
 
         run: |
           source("exec/update_match_summary.R", chdir = TRUE)
