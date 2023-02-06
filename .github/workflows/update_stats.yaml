@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
-      token: ${{ secrets.GH_PAT }}
+      GITHUB_PAT: ${{ secrets.GH_PAT }}
 
     steps:
       - name: Checkout private db repo
@@ -33,10 +33,18 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 1
+          working-directory: ./private
           extra-packages: nwslR/nwslscrapeR
 
-      - name: Update Match Summaries
+      - name: Checkout private db repo
+        uses: actions/checkout@v2
+        with:
+          repository: nwslR/nwslscrapeR
+          ref:  adror1/update-scripts
+          token: ${{ secrets.GH_PAT }}
 
+      - name: Update Match Summaries
+        working-directory: ./exec
         run: |
-          source("exec/update_match_summary.R", chdir = TRUE)
+          source("update_match_summary.R", chdir = TRUE)
         shell: Rscript {0}
