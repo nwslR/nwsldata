@@ -7,9 +7,10 @@ name: update_stats
 
 jobs:
   stats_update:
-    runs-on: macOS-latest
+    runs-on: ubuntu-20.04
     env:
-      GITHUB_PAT: ${{ secrets.GH_PAT }}
+      RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
+      token: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout private db repo
