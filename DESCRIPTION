@@ -1,12 +1,14 @@
 Package: nwsldata
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: nwsldata automated scrape jobs
+Version: 0.0.9
+Author: person("Arielle", "Dror", email = "arielle.dror@gmail.com", role = c("aut", "cre"))
+Maintainer: Arielle Dror <arielle.dror@gmail.com>
+Description: Holds automated scraping jobs and uploads to releases.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-
+Imports: 
+    cli,
+    glue,
+    piggyback
+RoxygenNote: 7.2.3
