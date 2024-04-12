@@ -1,6 +1,6 @@
 Package: nwsldata
 Title: nwsldata automated scrape jobs
-Version: 0.0.9
+Version: 0.0.10
 Author: person("Arielle", "Dror", email = "arielle.dror@gmail.com", role = c("aut", "cre"))
 Maintainer: Arielle Dror <arielle.dror@gmail.com>
 Description: Holds automated scraping jobs and uploads to releases.
